@@ -5,10 +5,9 @@ import { posts } from '#site/content';
 import Link from 'next/link';
 import { PostItem } from '@/components/post-item';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { AppleIcon } from 'lucide-react';
 import Image from 'next/image';
-import calertLogo from '../public/static/calert-logo.svg';
-import bridelessLogo from '../public/static/bridgeless-logo.svg';
+import CalertLogo from '../assets/images/calert/calendar-with-day.svg';
+import BridelessLogo from '../assets/images/calert/bridgeless-logo.svg';
 
 export default function Home() {
   const latestPosts = sortPosts(posts).slice(0, 5);
@@ -48,7 +47,7 @@ export default function Home() {
 
         <div className="text-center mb-8">
           <Image
-            src={calertLogo}
+            src={CalertLogo}
             alt="Calert Logo"
             width={100}
             height={100}
@@ -67,7 +66,7 @@ export default function Home() {
             </CardHeader>
             <CardContent className="flex flex-col items-center gap-4">
               <Image
-                src={calertLogo}
+                src={CalertLogo}
                 alt="Calert App on Apple Store"
                 width={160}
                 height={160}
@@ -89,7 +88,7 @@ export default function Home() {
             </CardHeader>
             <CardContent className="flex flex-col items-center gap-4">
               <Image
-                src={calertLogo}
+                src={CalertLogo}
                 alt="Calert App on Google Play"
                 width={160}
                 height={160}
@@ -124,7 +123,7 @@ export default function Home() {
             </CardHeader>
             <CardContent className="flex flex-col items-center gap-4">
               <Image
-                src={bridelessLogo}
+                src={BridelessLogo}
                 alt="Bridgeless App on Apple Store"
                 width={160}
                 height={160}
@@ -147,7 +146,7 @@ export default function Home() {
             </CardHeader>
             <CardContent className="flex flex-col items-center gap-4">
               <Image
-                src={bridelessLogo}
+                src={BridelessLogo}
                 alt="Bridgeless App on Google Play"
                 width={160}
                 height={160}
@@ -170,7 +169,7 @@ export default function Home() {
       <section className="container max-w-4xl mx-auto px-4 mb-20">
         <div className="text-center mb-8">
           <Image
-            src={bridelessLogo}
+            src={BridelessLogo}
             alt="Calert Logo"
             width={100}
             height={100}
@@ -189,7 +188,7 @@ export default function Home() {
             </CardHeader>
             <CardContent className="flex flex-col items-center gap-4">
               <Image
-                src={bridelessLogo}
+                src={BridelessLogo}
                 alt="Calert App on Apple Store"
                 width={160}
                 height={160}
@@ -212,7 +211,7 @@ export default function Home() {
             </CardHeader>
             <CardContent className="flex flex-col items-center gap-4">
               <Image
-                src={bridelessLogo}
+                src={BridelessLogo}
                 alt="Calert App on Google Play"
                 width={160}
                 height={160}
@@ -247,7 +246,7 @@ export default function Home() {
             </CardHeader>
             <CardContent className="flex flex-col items-center gap-4">
               <Image
-                src={bridelessLogo}
+                src={BridelessLogo}
                 alt="Bridgeless App on Apple Store"
                 width={160}
                 height={160}
@@ -270,7 +269,7 @@ export default function Home() {
             </CardHeader>
             <CardContent className="flex flex-col items-center gap-4">
               <Image
-                src={bridelessLogo}
+                src={BridelessLogo}
                 alt="Bridgeless App on Google Play"
                 width={160}
                 height={160}
