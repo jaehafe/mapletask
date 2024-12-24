@@ -1,0 +1,101 @@
+---
+title: React Native push notification 설정하기 - Android편
+description: firebase와 spring boot를 이용하여 react native에서 push notification 설정하기 - Android편
+date: 2024-12-02
+tags: ['react-native', 'Calert', 'firebase', 'spring-boot', 'android', 'fcm']
+published: true
+---
+
+# Android에서 push notification 보내는 방법을 알아보겠습니다.
+
+- 앞서 iOS편에서 추가한 dependency를 그대로 사용하면 됩니다.
+
+## 1. firebase 설정
+
+아래 사진에 보이는 Android를 클릭하면 "Android 앱에 Firebase 추가" 화면으로 이동해서
+Android 패키지 이름과 디버그 서명 인증서 SHA-1을 입력해야 합니다.
+
+Android 패키지 이름은 `android/app/src/main/AndroidManifest.xml` 파일에서 확인할 수 있고, `android/app/build.gradle` 파일 상단에 있는 `applicationId` 를 사용하면 되는데
+
+저는 `AndroidManifest.xml` 파일에 없어서 `build.gradle` 파일에 있는 `applicationId`를 사용했습니다.
+
+```gradle
+android {
+    defaultConfig {
+        applicationId "com.your.packagename"
+        ...
+    }
+}
+```
+
+<Image
+  src="../../assets/images/push-notification-android/1.png"
+  alt="프로젝트 만들기"
+  width={800}
+  height={300}
+/>
+
+<Image
+  src="../../assets/images/push-notification-android/2.png"
+  alt="프로젝트 만들기"
+  width={800}
+  height={300}
+/>
+
+디버그 서명 인증서 SHA-1는 지금 미리 해두면 나중에 Oauth2.0를 사용할 때나 Google 로그인 할 때 사용할 수 있습니다. 이 부분은 나중에 추가하도록 하고 지금은 넘어가겠습니다.
+
+## 3. 구성 파일 다운로드 후 추가
+
+<Image
+  src="../../assets/images/push-notification-android/3.png"
+  alt="프로젝트 만들기"
+  width={800}
+  height={300}
+/>
+
+보이는 화면에서 `google-services.json` 파일을 다운로드 받아서 `android/app` 폴더에 추가합니다.
+
+## 4. Firebase SDK 추가
+
+4-1. 저는 React Native 0.75.3 버전을 사용중이어서, Kotlin DSL이 아니라 Groovy DSL이라 `android/build.gradle` 파일에 아래와 같이 추가했습니다.
+
+```gradle
+dependencies {
+    classpath("com.android.tools.build:gradle")
+    classpath("com.facebook.react:react-native-gradle-plugin")
+    classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")
+    // fcm
+    classpath("com.google.gms:google-services:4.4.2") // 이 부분 추가
+}
+```
+
+4-2. `android/app/build.gradle`
+
+```gradle
+dependencies {
+    // The version of react-native is set by the React Native Gradle Plugin
+    implementation("com.facebook.react:react-android")
+
+    // fcm 추가
+    implementation("com.google.firebase:firebase-messaging:20.2.3") // 이 부분 추가
+
+    if (hermesEnabled.toBoolean()) {
+        implementation("com.facebook.react:hermes-android")
+    } else {
+        implementation jscFlavor
+    }
+}
+```
+
+설정이 끝났습니다!!
+
+<Image
+  src="../../assets/images/push-notification-android/4.png"
+  alt="프로젝트 만들기"
+  width={800}
+  height={300}
+/>
+
+다시 빌드해야 적용이 되기 때문에 `yarn start --reset-cache`를 실행하고 앱을 다시 빌드해야 합니다.
+
+### 다음 글에서는 Spring Boot로 push notification을 보내는 방법을 알아보겠습니다. 감사합니다!
