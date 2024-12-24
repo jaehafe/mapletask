@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Background Layer -->
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF9966;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF7F50;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Left Speech Bubble -->
+  <path d="M40,70 
+           h80 
+           a20,20 0 0 1 20,20 
+           v40 
+           a20,20 0 0 1 -20,20 
+           h-60
+           l-20,20
+           v-20
+           h-0
+           a20,20 0 0 1 -20,-20
+           v-40
+           a20,20 0 0 1 20,-20
+           z" 
+        fill="url(#grad1)" 
+        transform="rotate(-5,100,100)"/>
+
+  <!-- Right Speech Bubble -->
+  <path d="M160,50 
+           h-80
+           a20,20 0 0 0 -20,20
+           v40
+           a20,20 0 0 0 20,20
+           h60
+           l20,20
+           v-20
+           h0
+           a20,20 0 0 0 20,-20
+           v-40
+           a20,20 0 0 0 -20,-20
+           z" 
+        fill="white"
+        stroke="url(#grad1)"
+        stroke-width="8"
+        transform="rotate(5,100,100)"/>
+
+  <!-- Three Dots in Left Bubble -->
+  <circle cx="65" cy="95" r="5" fill="white"/>
+  <circle cx="85" cy="95" r="5" fill="white"/>
+  <circle cx="105" cy="95" r="5" fill="white"/>
+
+  <!-- Three Dots in Right Bubble -->
+  <circle cx="95" cy="85" r="5" fill="url(#grad1)"/>
+  <circle cx="115" cy="85" r="5" fill="url(#grad1)"/>
+  <circle cx="135" cy="85" r="5" fill="url(#grad1)"/>
+</svg>

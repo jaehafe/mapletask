@@ -1,8 +1,8 @@
 export const siteConfig = {
-  name: 'Jaeha',
-  url: 'https://example.com',
+  name: 'mapletask',
+  url: 'https://mapletask.vercel.app/',
   description: 'Nextjs 14 blog using velite, tailwind and shadcn',
-  author: 'Jaeha',
+  author: 'mapletask',
   links: {
     twitter: 'https://twitter.com/miniapp223',
     github: 'https://github.com/jaehafe',

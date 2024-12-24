@@ -21,13 +21,17 @@ export function MobileNav() {
         </Button>
       </SheetTrigger>
       <SheetContent side="right">
-        <MobileLink onOpenChange={setOpen} href="/" className="flex items-center">
+        <MobileLink
+          onOpenChange={setOpen}
+          href="/"
+          className="flex items-center"
+        >
           <Icons.logo className="mr-2 h-4 w-4" />
           <span className="font-bold">{siteConfig.name}</span>
         </MobileLink>
         <div className="flex flex-col gap-3 mt-3">
           <MobileLink onOpenChange={setOpen} href="/blog">
-            전투일지
+            mapletask
           </MobileLink>
           <MobileLink onOpenChange={setOpen} href="/about">
             About
@@ -35,7 +39,11 @@ export function MobileNav() {
           <Link target="_blank" rel="noreferrer" href={siteConfig.links.github}>
             GitHub
           </Link>
-          <Link target="_blank" rel="noreferrer" href={siteConfig.links.twitter}>
+          <Link
+            target="_blank"
+            rel="noreferrer"
+            href={siteConfig.links.twitter}
+          >
             Twitter
           </Link>
         </div>
@@ -50,7 +58,13 @@ interface MobileLinkProps extends LinkProps {
   className?: string;
 }
 
-function MobileLink({ href, onOpenChange, children, className, ...props }: MobileLinkProps) {
+function MobileLink({
+  href,
+  onOpenChange,
+  children,
+  className,
+  ...props
+}: MobileLinkProps) {
   const router = useRouter();
   return (
     <Link

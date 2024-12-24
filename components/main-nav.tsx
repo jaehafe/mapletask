@@ -21,7 +21,7 @@ export function MainNav() {
           pathname === '/blog' ? 'text-foreground' : 'text-foreground/60'
         )}
       >
-        전투일지
+        mapletask
       </Link>
       {/* <Link
         href="/about"
