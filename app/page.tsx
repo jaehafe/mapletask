@@ -7,8 +7,8 @@ import { PostItem } from '@/components/post-item';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { AppleIcon } from 'lucide-react';
 import Image from 'next/image';
-import calertLogo from '@/public/static/calendar-with-day.svg';
-import bridelessLogo from '@/public/static/bridgeless-logo.svg';
+import calertLogo from '/public/static/calendar-with-day.svg';
+import bridelessLogo from '/public/static/bridgeless-logo.svg';
 
 export default function Home() {
   const latestPosts = sortPosts(posts).slice(0, 5);
