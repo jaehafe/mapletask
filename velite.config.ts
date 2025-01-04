@@ -1,16 +1,16 @@
-import { defineConfig, defineCollection, s } from "velite";
-import rehypeSlug from "rehype-slug";
-import rehypePrettyCode from "rehype-pretty-code";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import { defineConfig, defineCollection, s } from 'velite';
+import rehypeSlug from 'rehype-slug';
+import rehypePrettyCode from 'rehype-pretty-code';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
 const computedFields = <T extends { slug: string }>(data: T) => ({
   ...data,
-  slugAsParams: data.slug.split("/").slice(1).join("/"),
+  slugAsParams: data.slug.split('/').slice(1).join('/'),
 });
 
 const posts = defineCollection({
-  name: "Post",
-  pattern: "blog/**/*.mdx",
+  name: 'Post',
+  pattern: 'blog/**/*.mdx',
   schema: s
     .object({
       slug: s.path(),
@@ -25,26 +25,26 @@ const posts = defineCollection({
 });
 
 export default defineConfig({
-  root: "content",
+  root: 'content',
   output: {
-    data: ".velite",
-    assets: "public/static",
-    base: "/static/",
-    name: "[name]-[hash:6].[ext]",
+    data: '.velite',
+    assets: 'public/static',
+    base: '/static/',
+    name: '[name]-[hash:6].[ext]',
     clean: true,
   },
   collections: { posts },
   mdx: {
     rehypePlugins: [
       rehypeSlug,
-      [rehypePrettyCode, { theme: "github-dark" }],
+      [rehypePrettyCode, { theme: 'github-dark' }],
       [
         rehypeAutolinkHeadings,
         {
-          behavior: "wrap",
+          behavior: 'wrap',
           properties: {
-            className: ["subheading-anchor"],
-            ariaLabel: "Link to section",
+            className: ['subheading-anchor'],
+            ariaLabel: 'Link to section',
           },
         },
       ],
