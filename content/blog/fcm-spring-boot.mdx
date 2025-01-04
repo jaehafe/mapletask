@@ -1,5 +1,5 @@
 ---
-title: Spring Boot FCM 푸시 알림 보내기
+title: Spring Boot FCM 푸시 알림 보내기 설정
 description: Spring Boot에서 Firebase Cloud Messaging을 이용하여 푸시 알림을 보내기
 date: 2025-01-04
 tags: ['Spring Boot', 'Firebase', 'FCM']
@@ -12,3 +12,91 @@ related:
 ## 관련 글
 
 - [React Native push notification 설정하기 - Android편](/posts/react-native-push-notifications-android)
+- [React Native push notification 설정하기 - iOS편](/posts/react-native-push-notifications-ios)
+
+## 1. Firebase 설정
+
+프로젝트 개요 - **프로젝트 설정**에 들어가고,
+
+<Image
+  src="../../assets/images/springboot-fcm/1.png"
+  alt="프로젝트 설정"
+  width={800}
+  height={300}
+/>
+
+서비스 계정 탭에서 백엔드 언어에 맞게 checkbox를 선택하고 **새 비공개 키 생성**을 클릭하면 됩니다.
+
+<Image
+  src="../../assets/images/springboot-fcm/2.png"
+  alt="프로젝트 설정"
+  width={800}
+  height={300}
+/>
+
+저 같은 경우는 **moyora-24f90-firebase-adminsdk-lj9jn-ce0c042d79.json** 이름으로 파일이 생성됐고
+Java + Spring Boot로 백엔드를 구성하고 있기 때문에 `src/main/resources/firebase` 폴더에 추가했습니다.
+
+<Image
+  src="../../assets/images/springboot-fcm/3.png"
+  alt="프로젝트 설정"
+  width={800}
+  height={300}
+/>
+
+## 2. Spring Boot 설정
+
+spring에서 fcm을 사용하기 위해 `firebase-admin` 의존성을 추가해야 합니다.
+`build.gradle.kts` 파일에 아래와 같이 추가합니다.
+
+```kotlin
+// firebase
+implementation("com.google.firebase:firebase-admin:9.2.0")
+```
+
+그리고 FCMConfig 클래스를 생성해서 FirebaseMessaging을 Bean으로 등록합니다.
+
+```java
+@Configuration
+public class FCMConfig {
+
+    @Bean
+    FirebaseMessaging firebaseMessaging() throws IOException {
+        ClassPathResource resource = new ClassPathResource("firebase/moyora-24f90-firebase-adminsdk-lj9jn-ce0c042d79.json");
+        InputStream refreshToken = resource.getInputStream();
+
+        FirebaseApp firebaseApp = null;
+        List<FirebaseApp> firebaseAppList = FirebaseApp.getApps();
+
+        if (firebaseAppList != null && !firebaseAppList.isEmpty()) {
+            for (FirebaseApp app : firebaseAppList) {
+                if (app.getName().equals(FirebaseApp.DEFAULT_APP_NAME)) {
+                    firebaseApp = app;
+                }
+            }
+        } else {
+            FirebaseOptions options = FirebaseOptions.builder()
+                    .setCredentials(GoogleCredentials.fromStream(refreshToken))
+                    .build();
+            firebaseApp = FirebaseApp.initializeApp(options);
+        }
+
+        return FirebaseMessaging.getInstance(firebaseApp);
+    }
+}
+```
+
+마지막으로 FCMService 클래스를 생성해서 푸시 알림을 보내는 메서드를 작성합니다.
+간단하게 코드로 보여드리자면 FirebaseMessaging을 주입받아서 원하는 알림을 보내고자 하는 device token에 send 메서드를 사용하면 됩니다.
+
+```java
+public class FCMService {
+
+    private final FirebaseMessaging firebaseMessaging; // 의존성 주입
+    private final DeviceTokenService deviceTokenService;
+
+    firebaseMessaging.send(message);
+}
+```
+
+자세한 코드 구현은 다음 글에서 다루도록 하겠습니다. 감사합니다!
