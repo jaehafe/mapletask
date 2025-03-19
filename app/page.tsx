@@ -7,7 +7,7 @@ import { PostItem } from '@/components/post-item';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Image from 'next/image';
 import CalertLogo from '../assets/images/calert/calendar-with-day.svg';
-import BridelessLogo from '../assets/images/calert/bridgeless-logo.svg';
+import BridelessLogo from '../assets/images/bridgeless/bridgeless.png';
 
 export default function Home() {
   const latestPosts = sortPosts(posts).slice(0, 5);
@@ -135,15 +135,14 @@ export default function Home() {
                 height={160}
                 className="rounded-md"
               />
-              <button
-                className={cn(
-                  buttonVariants({ variant: 'secondary' }),
-                  'w-full'
-                )}
-                disabled
+              <Link
+                href="https://apps.apple.com/kr/app/bridgeless/id6740178723"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn(buttonVariants({ variant: 'default' }), 'w-full')}
               >
-                Coming Soon
-              </button>
+                Download Now
+              </Link>
             </CardContent>
           </Card>
           <Card className="w-full sm:w-1/2">
@@ -158,15 +157,14 @@ export default function Home() {
                 height={160}
                 className="rounded-md"
               />
-              <button
-                className={cn(
-                  buttonVariants({ variant: 'secondary' }),
-                  'w-full'
-                )}
-                disabled
+              <Link
+                href="https://play.google.com/store/apps/details?id=com.bridgeless"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn(buttonVariants({ variant: 'default' }), 'w-full')}
               >
-                Coming Soon
-              </button>
+                Download Now
+              </Link>
             </CardContent>
           </Card>
         </div>
